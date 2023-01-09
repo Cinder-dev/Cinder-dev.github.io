@@ -56,7 +56,12 @@ Date.prototype.getDateString = function() {
     return i.toLocaleString('en-US', {minimumIntegerDigits: 2}) + "th";
 }
 
+
 function init() {
+    document.onclick = () => {
+        document.documentElement.style.setProperty("--glow-color", `#${Math.floor(Math.random()*0xFFFFFF).toString(16).padStart(0, 6)}`);
+    }
+
     let hour = document.querySelector("#hour");
     let minute = document.querySelector("#minute");
     let second = document.querySelector("#second");
@@ -76,6 +81,10 @@ function init() {
         month.replaceChildren(document.createTextNode(dateTime.getMonthString()));
         date.replaceChildren(document.createTextNode(dateTime.getDateString()));
     }, 100);
+
+    setInterval(() => {
+        document.documentElement.style.setProperty("--glow-color", `#${Math.floor(Math.random()*0xFFFFFF).toString(16).padStart(0, 6)}`);
+    }, 60000)
 }
 
 init();
