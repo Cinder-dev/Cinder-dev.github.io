@@ -4,16 +4,137 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://pixijs.download/release/pixi.js"></script>
-    <title>Cinders Development Homepage</title>
+    <title>PI Display</title>
     <style>
+        :root {
+            --glow-color: cyan;
+        }
+        @font-face {
+            font-family: tech;
+            src: url("digital-7 (mono).ttf");
+        }
         body {
+            font-family: tech, sans-serif;
             margin: 0;
+            background: darkred;
+        }
+        .app {
+            width: 480px;
+            height: 320px;
+            font-size: 64px;
+            background-color: black;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            column-gap: 16px;
+        }
+        .background {
+            position: absolute;
+            padding: 16px;
+        }
+        .main-section {
+            padding: 16px;
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+            row-gap: 16px;
+        }
+        .row {
+            display: flex;
+            flex-direction: row;
+            column-gap: 2px;
+            align-items: flex-end;
+        }
+        p {
+            margin: 0;
+        }
+        .glow {
+            color: #fff;
+            text-shadow:
+                0 0 7px #fff,
+                0 0 10px #fff,
+                0 0 21px #fff,
+                0 0 42px var(--glow-color),
+                0 0 82px var(--glow-color),
+                0 0 92px var(--glow-color),
+                0 0 102px var(--glow-color),
+                0 0 151px var(--glow-color);
+            animation: flicker 10s ease-in-out infinite alternate;
+        }
+        .main-text {
+            font-size: 96px;
+        }
+        .alt-main-text {
+            color: rgba(255,255,255,.1);
+        }
+        .space-between {
+            justify-content: space-between;
+        }
+
+        @keyframes flicker {
+            100% {
+                /* Larger blur radius */
+                text-shadow:
+                0 0 4px #fff,
+                0 0 11px #fff,
+                0 0 19px #fff,
+                0 0 40px var(--glow-color),
+                0 0 80px var(--glow-color),
+                0 0 90px var(--glow-color),
+                0 0 100px var(--glow-color),
+                0 0 150px var(--glow-color);
+            }
+            0% {
+                /* A slightly smaller blur radius */
+                text-shadow:
+                0 0 4px #fff,
+                0 0 10px #fff,
+                0 0 18px #fff,
+                0 0 38px var(--glow-color),
+                0 0 73px var(--glow-color),
+                0 0 80px var(--glow-color),
+                0 0 94px var(--glow-color),
+                0 0 140px var(--glow-color);
+            }
         }
     </style>
 </head>
 <body>
-    
+    <div class="app">
+        <div class="background column">
+            <p class="alt-main-text">888888888</p>
+            <div class="row">
+                <p class="main-text alt-main-text">88</p>
+                <p class="main-text alt-main-text">:</p>
+                <p class="main-text alt-main-text">88</p>
+                <p class="main-text alt-main-text">:</p>
+                <p class="main-text alt-main-text">88</p>
+                <p class="alt-main-text">88</p>
+            </div>
+            <div class="row space-between">
+                <p class="alt-main-text">888888888</p>
+                <p class="alt-main-text">8888</p>
+            </div>
+        </div>
+        <div class="main-section column">
+            <p id="day" class="glow"></p>
+            <div class="row">
+                <p id="hour" class="main-text glow"></p>
+                <p class="main-text glow">:</p>
+                <p id="minute" class="main-text glow"></p>
+                <p class="main-text glow">:</p>
+                <p id="second" class="main-text glow"></p>
+                <p id="phase" class="glow"></p>
+            </div>
+            <div class="row space-between ">
+                <p id="month" class="glow"></p>
+                <p id="date" class="glow"></p>
+            </div>
+        </div>
+    </div>
     <script src="pi-display.js"></script>
 </body>
 </html>
